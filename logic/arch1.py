@@ -64,12 +64,10 @@ print(results.summary())
 #Forecasting volatility of the next 5 days
 
 forecast = results.forecast(horizon = 5)
-
 predicted_variance = forecast.variance
 
 #Volatility = square root(Variance), Volatility is the standard deviation
 predicted_volatility = predicted_variance**0.5
-
 print(predicted_volatility)
 
 predicted_volatility = [1.290793,  1.538573,  1.631696, 1.669358, 1.684966] #2015 - 2024
@@ -105,5 +103,5 @@ print("ARCH Model Actual Volatility: ", realized_vol)
 #How can we use this model to get the daily volatility, then we can make an automated VIX trading strategy
 
 
-#Module 2 - GARCH Model implementation
+
 
