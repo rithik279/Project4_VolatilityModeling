@@ -35,11 +35,12 @@ print(df)"""
 import pandas as pd
 import yfinance as yf
 from arch import arch_model
+import numpy as np
 
 symbol = "JPM"
 
 # 1) Download daily close prices
-prices = yf.download(symbol, start="2015-01-01", end="2025-01-01", progress=False)["Close"]
+prices = yf.download(symbol, start="2022-01-01", end="2025-01-01", progress=False)["Close"]
 
 print(prices)
 
@@ -88,15 +89,12 @@ real_df = real_df.dropna()
 
 print(real_df)
 
-realized_vol = real_df['returns'].std()
+realized_vol = real_df['returns'].std()*np.sqrt(5)#Make the adjustment since it is the # of days for which the volatility is found, Predicting the volatility of past one year, we multiply by square root of 252
 
 print("ARCH Model Predicted Volatility: ", predicted_avg_col)
 print("ARCH Model Actual Volatility: ", realized_vol)
 
 #We haven't yet finetuned the model, change to last 3 years
-
-#2015 - 2024, Actual =  0.7566582717300718, Predicted = 1.5630772
-# 2022-2024, Actual =  0.7566582717300718, Predicted = 1.5562546
 
 #ARCH Model does not consider past volatility that is why we are not getting a good result, covered in garch model
 #Can change the ticker to bank of america

@@ -3,6 +3,7 @@
 import pandas as pd
 import yfinance as yf
 from arch import arch_model
+import numpy as np
 
 symbol = "JPM"
 
@@ -54,7 +55,7 @@ real_df = real_df.dropna()
 
 print(real_df)
 
-realized_vol = real_df['returns'].std()
+realized_vol = real_df['returns'].std()*np.sqrt(5)
 
 print("GARCH Model Predicted Volatility: ", predicted_avg_col)
 print("GARCH Model Actual Volatility: ", realized_vol)
